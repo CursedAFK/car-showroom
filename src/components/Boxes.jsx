@@ -21,9 +21,30 @@ const Box = ({ color }) => {
   })
 
   const boxRef = useRef(null)
+  const timeRef = useRef(0)
+
+  const resetPosition = () => {
+    let v = new Vector3(
+      (Math.random() * 2 - 1) * 3,
+      Math.random() * 2.5 + 0.1,
+      Math.random() * 10 + 10
+    )
+    if (v.x < 0) v.x -= 1.75
+    if (v.x > 0) v.x += 1.75
+
+    setPosition(v)
+  }
 
   useFrame(
     (state, delta) => {
+      timeRef.current += delta * 1.2
+      let newZ = position.z - timeRef.current
+
+      if (newZ < -10) {
+        resetPosition()
+        timeRef.current = 0
+      }
+
       boxRef.current.position.set(position.x, position.y, position.z)
       boxRef.current.rotation.x += delta * xRotSpeed
       boxRef.current.rotation.y += delta * yRotSpeed

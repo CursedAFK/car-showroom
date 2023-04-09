@@ -19,7 +19,7 @@ import Rings from './Rings'
 const CarShow = () => {
   return (
     <>
-      <OrbitControls target={[0, 0.35, 0]} maxPolarAngle={1.45} />
+      <OrbitControls target={[0, 0.35, 0]} maxPolarAngle={1.45} autoRotate />
 
       <PerspectiveCamera makeDefault fov={50} position={[3, 2, 5]} />
 

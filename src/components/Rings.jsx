@@ -8,7 +8,9 @@ function Ring({ index }) {
   useFrame(function (state) {
     if (!meshRef.current) return
 
-    const z = (index - 7) * 3.5
+    let elapsed = state.clock.getElapsedTime()
+
+    const z = (index - 7) * 3.5 + ((elapsed * 0.4) % 3.5) * 2
     meshRef.current.position.set(0, 0, -z)
 
     const dist = Math.abs(z)
